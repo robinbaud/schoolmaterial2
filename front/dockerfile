@@ -1,4 +1,4 @@
-FROM node:16 AS nodejs
+FROM node:16 AS reactjs
 
 COPY package*.json ./
 

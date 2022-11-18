@@ -5,6 +5,7 @@ import Axios from "axios";
 
 function App() {
   var baseUrl = process.env.REACT_APP_DOMAIN;
+  console.log(baseUrl);
   React.useEffect(() => {
     Axios.get(baseUrl + "/api/allMateriels")
       .then((r) => console.log(r))
@@ -12,8 +13,8 @@ function App() {
   }, []);
   React.useEffect(() => {
     Axios.post(baseUrl + "/api/addMateriel", {
-      name: "clé USB",
-      description: "petites mais puissantes",
+      name: "adaptateur",
+      description: "toute sorte de trous",
     })
       .then((r) => console.log(r))
       .catch((e) => console.error(e));

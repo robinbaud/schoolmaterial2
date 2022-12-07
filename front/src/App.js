@@ -4,18 +4,17 @@ import "./App.css";
 import Axios from "axios";
 
 function App() {
-  var baseUrl = process.env.REACT_APP_DOMAIN;
+  const baseUrl = process.env.REACT_APP_DOMAIN;
+  const studentApi = "http://vps-a47222b1.vps.ovh.net:4242/student";
   console.log(baseUrl);
+
   React.useEffect(() => {
     Axios.get(baseUrl + "/api/allMateriels")
       .then((r) => console.log(r))
       .catch((e) => console.error(e));
   }, []);
   React.useEffect(() => {
-    Axios.post(baseUrl + "/api/addMateriel", {
-      name: "adaptateur",
-      description: "toute sorte de trous",
-    })
+    Axios.get(studentApi)
       .then((r) => console.log(r))
       .catch((e) => console.error(e));
   }, []);

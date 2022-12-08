@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const axios = require("axios");
 const http = require("http");
 var bodyParser = require("body-parser");
 const mongoose = require("mongoose");
@@ -38,6 +39,12 @@ app.use((req, res, next) => {
   next();
 });
 
+app.get("/api/students", function (req, res) {
+  axios
+    .get("http://vps-a47222b1.vps.ovh.net:4242/Student")
+    .then((r) => res.json(r.data))
+    .catch((e) => res.json(e));
+});
 app.get("/api/allMateriels", function (req, res) {
   Materiel.find()
     .then((materiels) => res.status(200).json(materiels))

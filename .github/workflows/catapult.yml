@@ -17,7 +17,7 @@ jobs:
       - uses: webfactory/ssh-agent@v0.5.4
         with:
           ssh-private-key: ${{ secrets.SSH_KEY }}
-      - run: ssh ${{ secrets.SSH_USER}}@${{ secrets.SSH_HOST }} "touch lattaquedesmalinois"
+      - run: ssh ${{ secrets.SSH_USER}}@${{ secrets.SSH_HOST }} "cd schoolmaterial2 && git pull && docker compose up -d --build --force-recreate"
 # name: deploy
 
 # on:

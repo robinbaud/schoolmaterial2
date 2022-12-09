@@ -1,9 +1,11 @@
 const express = require("express");
 const app = express();
+const axios = require("axios");
 const http = require("http");
 var bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const Materiel = require("./models/Materiel");
+const Student = require("./models/Student");
 var jsonParser = bodyParser.json();
 require("dotenv").config();
 
@@ -38,6 +40,13 @@ app.use((req, res, next) => {
   next();
 });
 
+app.get("/api/students", function (req, res) {
+  axios
+    .get("http://vps-a47222b1.vps.ovh.net:4242/Student")
+    .then((r) => res.json(r.data))
+    .catch((error) => res.json({ error }));
+});
+
 app.get("/api/allMateriels", function (req, res) {
   Materiel.find()
     .then((materiels) => res.status(200).json(materiels))
@@ -55,6 +64,16 @@ app.post("/api/addMateriel", jsonParser, function (req, res) {
   materiel
     .save()
     .then(() => res.status(201).json({ message: "Matériel enregistré !" }))
+    .catch((error) => res.status(400).json({ error }));
+});
+
+app.post("/api/reservationStudent", jsonParser, function (req, res) {
+  const student = new Student({
+    ...req.body,
+  });
+  student
+    .save()
+    .then(() => res.status(201).json({ message: "étudiant enregistré !" }))
     .catch((error) => res.status(400).json({ error }));
 });
 

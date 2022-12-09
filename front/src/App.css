@@ -36,7 +36,7 @@
 }
 .scrollContainer {
   height: 320px;
-  width: 50vw;
+  width: 60vw;
   overflow: scroll;
 }
 .tableCell {

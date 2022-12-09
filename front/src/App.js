@@ -26,6 +26,12 @@ function App() {
       .catch((e) => console.error(e));
   }, []);
 
+  const handleClick = (id) => {
+    console.log(id);
+    Axios.post(baseUrl + "/api/reservationStudent", { studentid: id })
+      .then((r) => console.log(r))
+      .catch((e) => console.log(e));
+  };
   return (
     <div className="App">
       <Button variant="contained" className="headerButton">
@@ -59,6 +65,15 @@ function App() {
                           {student.prenom}
                         </TableCell>
                         <TableCell>{student.mail}</TableCell>
+                        <TableCell>
+                          <Button
+                            variant="contained"
+                            color="success"
+                            onClick={() => handleClick(student.id)}
+                          >
+                            Réserver
+                          </Button>
+                        </TableCell>
                       </TableRow>
                     ))}
                 </TableBody>

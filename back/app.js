@@ -47,6 +47,11 @@ app.get("/api/students", function (req, res) {
     .catch((error) => res.json({ error }));
 });
 
+app.get("/api/studentReservation", function (req, res) {
+  Student.find()
+    .then((students) => res.status(200).json(students))
+    .catch((error) => res.status(400).json({ error }));
+});
 app.get("/api/allMateriels", function (req, res) {
   Materiel.find()
     .then((materiels) => res.status(200).json(materiels))
